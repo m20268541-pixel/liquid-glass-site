@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10172f">
+<title>Liquid Glass · 液态玻璃</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;color:#fff;min-height:100vh;
+ font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+ background:
+ radial-gradient(ellipse at 15% 20%,#526cbd88,transparent 38%),
+ radial-gradient(ellipse at 85% 35%,#a35bc466,transparent 35%),
+ linear-gradient(135deg,#080e20,#19294c 60%,#10152b);
+ background-attachment:fixed;overflow-x:hidden;
+}
+body:before,body:after{
+ content:"";position:fixed;z-index:-1;border-radius:50%;
+ width:330px;height:330px;pointer-events:none;
+ background:linear-gradient(135deg,#ffffff55,#819eff22,#d5a0ff44);
+ border:1px solid #ffffff55;
+ box-shadow:inset 12px 10px 30px #ffffff55,
+ inset -18px -20px 40px #0005,0 25px 80px #527aff33;
+ animation:float 12s ease-in-out infinite alternate;
+}
+body:before{top:8%;left:-150px}
+body:after{right:-130px;bottom:5%;animation-delay:-5s}
+@keyframes float{
+ to{transform:translate(35px,-30px) rotate(18deg)}
+}
+.wrap{width:min(1080px,calc(100% - 36px));margin:auto}
+header{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:25px 0
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:2px}
+.logo{
+ width:34px;height:34px;border-radius:12px;
+ background:linear-gradient(135deg,#ffffffcc,#8baaff44);
+ border:1px solid #ffffff88;
+ box-shadow:inset 0 1px 8px #fff9,0 8px 22px #0005
+}
+nav{display:flex;gap:20px;font-size:13px;color:#d9e2ff}
+a{color:inherit;text-decoration:none}
+nav a:hover{color:white}
+.glass{
+ background:linear-gradient(135deg,#ffffff2b,#ffffff0b);
+ border:1px solid #ffffff38;
+ box-shadow:inset 0 1px 0 #ffffff55,0 20px 55px #0003;
+ backdrop-filter:blur(22px) saturate(150%);
+ -webkit-backdrop-filter:blur(22px) saturate(150%);
+ border-radius:24px
+}
+.hero{
+ display:grid;grid-template-columns:1fr 1fr;gap:30px;
+ align-items:center;padding:75px 0 65px
+}
+.tag{
+ display:inline-block;padding:9px 14px;border-radius:30px;
+ border:1px solid #ffffff44;background:#ffffff12;
+ color:#dce7ff;font-size:12px
+}
+h1{
+ font-size:clamp(48px,8vw,82px);line-height:1.02;
+ letter-spacing:-4px;margin:24px 0
+}
+.gradient{
+ background:linear-gradient(100deg,#fff,#b8d5ff 55%,#e5baff);
+ color:transparent;background-clip:text;-webkit-background-clip:text
+}
+.lead{color:#d0daf4;line-height:1.9;font-size:16px;max-width:480px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+ display:inline-block;padding:13px 19px;border-radius:14px;
+ border:1px solid #ffffff55;background:#ffffff19;
+ color:white;font-size:14px;font-weight:650;cursor:pointer;
+ transition:.25s
+}
+.btn:hover{transform:translateY(-3px);background:#ffffff30}
+.visual{
+ min-height:360px;display:grid;place-items:center;position:relative
+}
+.orb{
+ width:min(300px,75vw);aspect-ratio:1;border-radius:44% 56% 58% 42%;
+ background:linear-gradient(135deg,#ffffff99,#ffffff13 35%,#91aaff55 65%,#d6a0ff66);
+ border:1px solid #ffffff99;
+ box-shadow:inset 14px 12px 30px #ffffffaa,
+ inset -20px -22px 40px #101a4d88,
+ 0 35px 90px #0005,0 0 65px #9bbaff33;
+ position:relative;transform:rotate(-15deg);
+ animation:morph 9s ease-in-out infinite alternate
+}
+.orb:before{
+ content:"";position:absolute;top:9%;left:12%;width:70%;height:30%;
+ border-radius:50%;background:linear-gradient(120deg,#ffffffcc,transparent);
+ filter:blur(8px);transform:rotate(-20deg)
+}
+@keyframes morph{
+ to{border-radius:58% 42% 43% 57%;transform:rotate(12deg) translateY(-12px)}
+}
+.orbit{
+ position:absolute;width:360px;height:120px;
+ border:1px solid #ffffff35;border-radius:50%;transform:rotate(-25deg)
+}
+.float-label{
+ position:absolute;right:0;bottom:25px;padding:14px 18px;
+ font-size:13px;color:#e7edff
+}
+.section{padding:25px 0 65px}
+h2{font-size:32px;letter-spacing:-1px;margin:15px 0}
+.desc{color:#c5d0ed;line-height:1.8}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}
+.feature{padding:23px;min-height:165px}
+.icon{
+ width:40px;height:40px;display:grid;place-items:center;
+ background:#ffffff20;border:1px solid #ffffff30;
+ border-radius:13px;font-size:20px;margin-bottom:17px
+}
+.feature h3{font-size:17px;margin:0 0 9px}
+.feature p{font-size:13px;line-height:1.8;color:#c5d0ed;margin:0}
+.demo{
+ margin:20px 0 65px;padding:28px;
+ display:flex;justify-content:space-between;align-items:center;gap:20px
+}
+.demo p{color:#c5d0ed;font-size:14px}
+footer{
+ border-top:1px solid #ffffff25;padding:25px 0 35px;
+ color:#aebbdc;font-size:12px
+}
+body.alt{
+ background:
+ radial-gradient(ellipse at 15% 20%,#1ac9c477,transparent 38%),
+ radial-gradient(ellipse at 85% 35%,#7269e977,transparent 35%),
+ linear-gradient(135deg,#071c2c,#18274b 60%,#11152d)
+}
+@media(max-width:700px){
+ nav{gap:12px;font-size:11px}
+ .hero{grid-template-columns:1fr;padding:55px 0 25px}
+ .visual{min-height:310px}
+ .orb{width:250px}
+ .orbit{width:300px}
+ .float-label{right:2%;bottom:10px}
+ .features{grid-template-columns:1fr}
+ .feature{min-height:auto}
+ .demo{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+ <a class="brand" href="#">
+  <span class="logo"></span>
+  <span>LIQUID / GLASS</span>
+ </a>
+ <nav>
+  <a href="#features">特点</a>
+  <a href="#demo">体验</a>
+  <a href="https://github.com/Kyant0/AndroidLiquidGlass" target="_blank" rel="noopener">项目参考 ↗</a>
+ </nav>
+</header>
+
+<main>
+<section class="hero">
+ <div>
+  <span class="tag">✦ A softer digital experience</span>
+  <h1><span class="gradient">Liquid<br>Glass.</span></h1>
+  <p class="lead">
+   让光线、色彩与空间在玻璃质感中自然流动。
+   通过柔和的模糊、细腻的高光和灵动的形态，
+   探索一种更有层次的数字界面。
+  </p>
+  <div class="buttons">
+   <a class="btn" href="#features">探索设计 ↗</a>
+   <a class="btn" href="#demo">查看效果 ↓</a>
+  </div>
+ </div>
+
+ <div class="visual">
+  <div class="orbit"></div>
+  <div class="orb"></div>
+  <div class="float-label glass">✦ 光影 · 透明 · 流动</div>
+ </div>
+</section>
+
+<section class="section" id="features">
+ <span class="tag">DESIGN LANGUAGE</span>
+ <h2>轻盈，但有层次。</h2>
+ <p class="desc">玻璃不是简单的透明，而是让背景、光线与内容彼此融合。</p>
+
+ <div class="features">
+  <article class="feature glass">
+   <div class="icon">◌</div>
+   <h3>柔和模糊</h3>
+   <p>背景透过磨砂质感呈现，让前景内容更清晰，也保留空间层次。</p>
+  </article>
+
+  <article class="feature glass">
+   <div class="icon">✧</div>
+   <h3>自然高光</h3>
+   <p>细腻的边缘反光与渐变，让玻璃表面看起来轻盈而通透。</p>
+  </article>
+
+  <article class="feature glass">
+   <div class="icon">〰</div>
+   <h3>灵动形态</h3>
+   <p>缓慢变化的曲线与漂浮动效，为页面带来柔和的动态感。</p>
+  </article>
+ </div>
+</section>
+
+<section class="demo glass" id="demo">
+ <div>
+  <span class="tag">INTERACTIVE MOMENT</span>
+  <h2>感受玻璃的流动</h2>
+  <p>点击右侧按钮，切换页面的光影氛围。</p>
+ </div>
+ <button class="btn" id="mood" type="button">切换光影 ✦</button>
+</section>
+</main>
+
+<footer>
+ © 2026 LIQUID / GLASS · 液态玻璃视觉实验
+</footer>
+
+</div>
+
+<script>
+const button=document.getElementById("mood");
+button.addEventListener("click",()=>{
+ document.body.classList.toggle("alt");
+ button.textContent=document.body.classList.contains("alt")
+ ? "恢复原始光影 ↺":"切换光影 ✦";
+});
+</script>
+</body>
+</html>
